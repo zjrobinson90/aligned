@@ -11,7 +11,7 @@ function setupGame(){
 	//creates the shapes
 	var n = 0;
 	for(i=0; i<5; i++){
-		for (j=0; j<5; j++){
+		for (j=0; j<2; j++){
 			$(square).appendTo('#parent');
 			$('.square:eq(' + n + ')').attr('id', 'square' + n);
 			n++;
