@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<title>Aligned</title>
+<meta charset = 'utf-8'>
+<script type="text/javascript" src="levels.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="touchable.js"></script>
+
+<style>
+body {
+	background: white;
+	margin:0; 
+	padding:0;
+    }
+	
+.squareRot {
+	height: 100px;
+	width: 100px;
+	margin: 5px;
+	background: darkslategray;
+	transform: rotate(5deg);
+	}
+.square {
+	height: 100px;
+	width: 100px;
+	margin: 5px;
+	background: darkslategray;
+	transform: rotate(0deg);
+	}
+	
+#parent{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex; 
+	justify-content: space-around;
+	flex-wrap: wrap;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+  }
+	
+</style>
+
+<body>
+<!--<canvas id="canvas"></canvas>-->
+
+<div id='parent'></div>
+</body>
+</html>
