@@ -75,5 +75,25 @@ function squarePuzzle_1(){
 
 
 
+//code that looks to see if the phone is in portrait and then asks them to turn it back
+window.addEventListener("resize", function() {
+	if( window.outerWidth > window.outerHeight ){
+		window.scrollTo(1,1);
+		$('#landscape').show();
+		lockScroll();
+		}else{
+			$('#landscape').hide();
+			unLockScroll();
+			}
+		}, false);
+// There are two functions lockScroll() and unLockScroll() which are used to prevent scrolling of the webpage.
+function lockScroll(){
+	$(document).bind("touchmove",function(event){
+		event.preventDefault();
+		});
+}
+function unLockScroll(){
+	$(document).unbind("touchmove");
+}
 
 
