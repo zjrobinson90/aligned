@@ -1,19 +1,31 @@
 
 
-
 var square = "<div onmouseup='clicked(this)' class='square'></div>";
 var triangle = "<div onmouseup='clicked(this)' class='triangle'></div>";
+
+// Setting up function to vibrate phone
+function vibrate() {
+	try{
+		navigator.vibrate([5]);
+	}catch(e){}
+}
 
 window.onload = function() {
 	setupGame();
 }
 
 function setupGame(){
-	squarePuzzle_1()
+	// keeps the screen in portrait mode on phones and catches the error thrown when on desktop
+	screen.orientation.lock('portrait').catch(function() {// do nothing
+	});
+	
+	// runs the first puzzle
+	squarePuzzle_1();
 }
 
 //rotates the selected shape back to 0 or shows a 'wrong' response
 function clicked(x) {
+	vibrate(); // vibrates the phone either way
 	var degZero = 0;
 	if($(x).attr('name') == 'answer'){
 		console.log("CORRECT");
@@ -30,9 +42,11 @@ function clicked(x) {
 		console.log("WRONG");
 		$(x).css('background-color', 'red');
 	}
+	//refreshes the page so the puzzle resets (THIS NEEDS TO BE CHANGES TO MOVE TO NEXT PUZZLE)
 	setTimeout(window.location.reload.bind(window.location), 500);
 }
 
+// Puzzle 1
 function squarePuzzle_1(){
 	//makes first square puzzle
 	//creates the shapes and gives them an id
@@ -58,33 +72,6 @@ function squarePuzzle_1(){
 		});
 		$('#square' + rando).attr('name', 'answer');
 }
-
-
-/*
-window.onload = function() {
-	canvas = document.getElementById('canvas');
-	context = canvas.getContext('2d');
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-	makeShapes();
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
