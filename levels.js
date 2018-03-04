@@ -30,6 +30,7 @@ function clicked(x) {
 		console.log("WRONG");
 		$(x).css('background-color', 'red');
 	}
+	setTimeout(window.location.reload.bind(window.location), 750);
 }
 
 function squarePuzzle_1(){
