@@ -31,8 +31,8 @@ window.onload = function() {
 
 function setupGame(){
 	// keeps the screen in portrait mode on phones and catches the error thrown when on desktop
-//	screen.orientation.lock('portrait').catch(function() {// do nothing
-//	});
+	screen.orientation.lock('portrait').catch(function() {// do nothing
+	});
 	
 	// runs the first puzzle
 	squarePuzzle_1();
