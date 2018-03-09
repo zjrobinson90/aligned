@@ -51,8 +51,14 @@ function clicked(x) {
 		console.log("WRONG");
 		$(x).css('background-color', 'red');
 	}
-	//refreshes the page so the puzzle resets (THIS NEEDS TO BE CHANGES TO MOVE TO NEXT PUZZLE)
-	setTimeout(window.location.reload.bind(window.location), 500);
+	// runs the clear puzzle function, starting the next puzzle
+	setTimeout(function(){clearPuzzle();}, 500);
+}
+
+// clears the puzzle and starts the next one (NEED NEW PUZZLES HERE)
+function clearPuzzle(){
+	$('#parent').empty();
+	squarePuzzle_1();
 }
 
 // Puzzle 1
@@ -66,7 +72,7 @@ function squarePuzzle_1(){
 			//gives the shapes an id by calling their class array position
 			$('.square:eq(' + n + ')').attr('id', 'square' + n);
 			n++;
-		}
+		}	
 	}
 	//randomly rotates one of the shapes
 	var degree = Math.floor(Math.random() * 11) + 1;
@@ -81,5 +87,3 @@ function squarePuzzle_1(){
 		});
 		$('#square' + rando).attr('name', 'answer');
 }
-
-
