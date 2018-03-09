@@ -11,22 +11,22 @@ function vibrate() {
 }
 
 // make full screen by clicking the DIV "banner"
-function fullScreen() {
-	document.getElementById('banner').addEventListener('click', () => {
-		if (screenfull.enabled) {
-			screenfull.toggle();
-		} else {
-			// Ignore or do something else
-		}
-	});
-}
+//function fullScreen() {
+//	document.getElementById('banner').addEventListener('click', () => {
+//		if (screenfull.enabled) {
+//			screenfull.toggle();
+//		} else {
+//			// Ignore or do something else
+//		}
+//	});
+//}
 
 
 window.onload = function() {
 	setupGame();
-	try{
-		fullScreen();
-	}catch(e){}
+//	try{
+//		fullScreen();
+//	}catch(e){}
 }
 
 function setupGame(){
