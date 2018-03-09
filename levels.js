@@ -21,13 +21,14 @@ function fullScreen() {
 window.onload = function() {
 	setupGame();
 	fullScreen();
+	// checks to see if the screen is full screened (never will be on start) and console logs it
+	console.log("The screen is fullscreen: " + screenfull.isFullscreen);
 }
 
 function setupGame(){
 	// keeps the screen in portrait mode on phones and catches the error thrown when on desktop
 	screen.orientation.lock('portrait').catch(function() {// do nothing
 	});
-	
 	// runs the first puzzle
 	squarePuzzle_1();
 }
@@ -77,7 +78,7 @@ function squarePuzzle_1(){
 	//randomly rotates one of the shapes
 	var degree = Math.floor(Math.random() * 11) + 1;
 	var rando = Math.floor(Math.random() * $('.square').length);
-	console.log($('.square').length);
+	console.log("Number of boxes: " + $('.square').length);
 	$('#square' + rando).css({
 		'-webkit-transform': 'rotate(' + degree + 'deg)',
 		'-moz-transform': 'rotate(' + degree + 'deg)',
