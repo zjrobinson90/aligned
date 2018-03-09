@@ -11,28 +11,28 @@ function vibrate() {
 }
 
 // make full screen by clicking the DIV "banner"
-//function fullScreen() {
-//	document.getElementById('banner').addEventListener('click', () => {
-//		if (screenfull.enabled) {
-//			screenfull.toggle();
-//		} else {
-//			// Ignore or do something else
-//		}
-//	});
-//}
+function fullScreen() {
+	document.getElementById('banner').addEventListener('click', () => {
+		if (screenfull.enabled) {
+			screenfull.toggle();
+		} else {
+			// Ignore or do something else
+		}
+	});
+}
 
 
 window.onload = function() {
 	setupGame();
-//	try{
-//		fullScreen();
-//	}catch(e){}
+	try{
+		fullScreen();
+	}catch(e){}
 }
 
 function setupGame(){
 	// keeps the screen in portrait mode on phones and catches the error thrown when on desktop
-	screen.orientation.lock('portrait').catch(function() {// do nothing
-	});
+//	screen.orientation.lock('portrait').catch(function() {// do nothing
+//	});
 	
 	// runs the first puzzle
 	squarePuzzle_1();
