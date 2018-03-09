@@ -10,8 +10,21 @@ function vibrate() {
 	}catch(e){}
 }
 
+// make full screen by clicking the DIV "banner"
+function fullScreen() {
+	document.getElementById('banner').addEventListener('click', () => {
+		if (screenfull.enabled) {
+			screenfull.toggle();
+		} else {
+			// Ignore or do something else
+		}
+	});
+}
+
+
 window.onload = function() {
 	setupGame();
+	fullScreen();
 }
 
 function setupGame(){
