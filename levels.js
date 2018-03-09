@@ -24,7 +24,9 @@ function fullScreen() {
 
 window.onload = function() {
 	setupGame();
-	fullScreen();
+	try{
+		fullScreen();
+	}catch(e){}
 }
 
 function setupGame(){
