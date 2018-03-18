@@ -37,12 +37,10 @@ function setupGame(){
 function clicked(x) {
 	elapsedTime = Date.now() - startTime; // shows how much time has passed since the puzzle started
 	timerPoints(); // sets the points dependent upon the elapsed time
-	console.log(elapsedTime);
 	vibrate(); // vibrates the phone either way
 	var degZero = 0;
 	// checks to see if the shape clicked is the correct one or the wrong one
 	if($(x).attr('name') == 'answer'){
-		console.log("CORRECT");
 		$(x).css({
 		'-webkit-transform': 'rotate(' + degZero + 'deg)',
 		'-moz-transform': 'rotate(' + degZero + 'deg)',
@@ -51,15 +49,18 @@ function clicked(x) {
         'transform': 'rotate(' + degZero + 'deg)',
 		'transform': 'rotate(' + degZero + 'deg)',
 		});
-		$(x).css('background-color', 'green');
+		$(x).css('background-color', '#57A773');
 		totalScore = totalScore + points; // adds 'points' to the total score
+		$(x).html( "<p class='animated fadeOutUp';>" + points + "</p>");
 		
 	} else {
-		console.log("WRONG");
-		$(x).css('background-color', 'red');
-		totalScore = totalScore - 5; // subtracts points to the total score
+		var pointsDown = -5;
+		$(x).css('background-color', '#EE6352');
+		totalScore = totalScore + pointsDown; // subtracts points to the total score
+		$(x).html( "<p class='animated fadeOutUp';>" + pointsDown + "</p>");
 	}
 	$('#banner').html("Aligned: " + totalScore);
+	
 	// runs the clear puzzle function, starting the next puzzle
 	setTimeout(function(){clearPuzzle();}, 500);
 }
@@ -74,14 +75,10 @@ function clearPuzzle(){
 // sets the points based on amount of time elapsed
 function timerPoints(){
 	points = 0;
-	if(elapsedTime <= 500) {
-		points = 15;
-	} else if(elapsedTime >= 501 && elapsedTime <= 1000) {
-		points = 10;
-	} else if(elapsedTime >=1001 && elapsedTime <= 1500) {
-		points = 5;
+	if(elapsedTime <= 1500) {
+		points = Math.floor((1500 - elapsedTime)/50); 
 	} else {
-		points = 0;
+		points = 5;
 	}
 }
 

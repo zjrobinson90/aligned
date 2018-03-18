@@ -12,13 +12,24 @@
   <script src="touchable.js"></script> <!-- http://touchpunch.furf.com/ -->
   <script src="fullscreen.js"></script> <!-- https://github.com/sindresorhus/screenfull.js*/ -->
 
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> <!-- https://github.com/daneden/animate.css -->
+  
 <style>
+/* 
+Red = #EE6352
+Green = #57A773
+Background = #D2CCA1
+Square = #387780
+Banner = #757780
+*/
+
 html {
 	overflow: hidden;
 }
 
 body {
-	background: gray;
+	background: #D2CCA1;
 	margin:0; 
 	padding:0;
 	height:100%;
@@ -31,9 +42,23 @@ body {
 	height: 40vw;
 	width: 40vw;
 	margin: 2vw;
-	background: darkslategray;
+	background: #387780;
 	transform: rotate(0deg);
+	color: white;
+	text-align: center;
+	font-family:Arial, Helvetica, sans-serif;
+
 	}
+
+.banner {
+	style="height:40px; 
+	width:100%; 
+	background-color: #757780;
+	color: white;
+	line-height: 40px; 
+	text-align: center; 
+	font-family:Arial, Helvetica, sans-serif;"
+}
 	
 #parent{
 	display: -webkit-box;
@@ -53,7 +78,7 @@ body {
 
 <body>
 <!--<canvas id="canvas"></canvas>-->
-<div id='banner' style="height:40px; width:100%; background-color: lightgray; color: black; line-height: 40px; text-align: center; font-family:Arial, Helvetica, sans-serif;">Aligned: </div>
+<div id='banner' class='banner'>Aligned: </div>
 <div id='parent'></div>
 </body>
 </html>
