@@ -34,6 +34,13 @@ function setupGame(){
 	clearPuzzle(); // clears the parent div of anything in it and runs the first puzzle
 }
 
+// clears the puzzle and starts the next one (NEED NEW PUZZLES HERE)
+function clearPuzzle(){
+	$('#parent').empty();
+	squarePuzzle_1();
+	startTime = Date.now(); // sets the start time timer for how long it takes someone to click
+}
+
 //rotates the selected shape back to 0 or shows a 'wrong' response
 function clicked(x) {
 	elapsedTime = Date.now() - startTime; // shows how much time has passed since the puzzle started
@@ -53,7 +60,8 @@ function clicked(x) {
 		$(x).css('background-color', '#57A773');
 		totalScore = totalScore + points; // adds 'points' to the total score
 		$(x).html( "<p class='animated fadeOutUp';>" + points + "</p>");
-		
+		// runs the clear puzzle function, starting the next puzzle
+		setTimeout(function(){clearPuzzle();}, 500);
 	} else {
 		$(x).css('background-color', '#EE6352');
 		$(x).toggleClass('animated shake');
@@ -61,16 +69,6 @@ function clicked(x) {
 		$(x).html( "<p class='animated fadeOutUp';>" + pointsDown + "</p>");
 	}
 	$('#banner').html("Aligned: " + totalScore);
-	
-	// runs the clear puzzle function, starting the next puzzle
-	setTimeout(function(){clearPuzzle();}, 500);
-}
-
-// clears the puzzle and starts the next one (NEED NEW PUZZLES HERE)
-function clearPuzzle(){
-	$('#parent').empty();
-	squarePuzzle_1();
-	startTime = Date.now(); // sets the start time timer for how long it takes someone to click
 }
 
 // sets the points based on amount of time elapsed
