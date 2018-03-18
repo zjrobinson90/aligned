@@ -50,19 +50,21 @@ function clicked(x) {
 		'transform': 'rotate(' + degZero + 'deg)',
 		});
 		$(x).css('background-color', '#57A773');
+		$(x).toggleClass('animated tada');
 		totalScore = totalScore + points; // adds 'points' to the total score
 		$(x).html( "<p class='animated fadeOutUp';>" + points + "</p>");
 		
 	} else {
 		var pointsDown = -5;
 		$(x).css('background-color', '#EE6352');
+		$(x).toggleClass('animated shake');
 		totalScore = totalScore + pointsDown; // subtracts points to the total score
 		$(x).html( "<p class='animated fadeOutUp';>" + pointsDown + "</p>");
 	}
 	$('#banner').html("Aligned: " + totalScore);
 	
 	// runs the clear puzzle function, starting the next puzzle
-	setTimeout(function(){clearPuzzle();}, 500);
+	setTimeout(function(){clearPuzzle();}, 1500);
 }
 
 // clears the puzzle and starts the next one (NEED NEW PUZZLES HERE)
