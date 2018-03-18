@@ -6,6 +6,7 @@ var totalScore = 0; // sets variable to show the total score of a user (ADD COOK
 var startTime; // sets variable to check the start time of the puzzle
 var elapsedTime; // sets variable to check how much time elapses between the start of the puzzle and the first click
 var points; // sets variable to determine how many points are awarded based on time
+var pointsDown = -5; // sets the variable to determine how many points should be lost
 
 // sets up function to vibrate phone
 function vibrate() {
@@ -54,7 +55,6 @@ function clicked(x) {
 		$(x).html( "<p class='animated fadeOutUp';>" + points + "</p>");
 		
 	} else {
-		var pointsDown = -5;
 		$(x).css('background-color', '#EE6352');
 		$(x).toggleClass('animated shake');
 		totalScore = totalScore + pointsDown; // subtracts points to the total score
@@ -77,7 +77,7 @@ function clearPuzzle(){
 function timerPoints(){
 	points = 0;
 	if(elapsedTime <= 1500) {
-		points = Math.floor((1500 - elapsedTime)/50); 
+		points = Math.max(Math.floor((1500 - elapsedTime)/50), 5); 
 	} else {
 		points = 5;
 	}
