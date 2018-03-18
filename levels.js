@@ -50,7 +50,6 @@ function clicked(x) {
 		'transform': 'rotate(' + degZero + 'deg)',
 		});
 		$(x).css('background-color', '#57A773');
-		$(x).toggleClass('animated tada');
 		totalScore = totalScore + points; // adds 'points' to the total score
 		$(x).html( "<p class='animated fadeOutUp';>" + points + "</p>");
 		
@@ -64,7 +63,7 @@ function clicked(x) {
 	$('#banner').html("Aligned: " + totalScore);
 	
 	// runs the clear puzzle function, starting the next puzzle
-	setTimeout(function(){clearPuzzle();}, 1500);
+	setTimeout(function(){clearPuzzle();}, 500);
 }
 
 // clears the puzzle and starts the next one (NEED NEW PUZZLES HERE)
