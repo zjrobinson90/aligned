@@ -7,6 +7,8 @@ var startTime; // sets variable to check the start time of the puzzle
 var elapsedTime; // sets variable to check how much time elapses between the start of the puzzle and the first click
 var points; // sets variable to determine how many points are awarded based on time
 var pointsDown = -5; // sets the variable to determine how many points should be lost
+var timer;
+var countDownTime = 10;
 
 // sets up function to vibrate phone
 function vibrate() {
@@ -24,6 +26,7 @@ function fullScreen() {
 window.onload = function() {
 	setupGame();
 	fullScreen();
+	$("#timer").html(countDownTime); // sets the timer to the start time
 	console.log("The screen is full screen: " + screenfull.isFullscreen); // checks to see if the screen is full screened (never will be on start) and console logs it
 }
 
@@ -39,7 +42,25 @@ function clearPuzzle(){
 	$('#parent').empty();
 	squarePuzzle_1();
 	startTime = Date.now(); // sets the start time timer for how long it takes someone to click
+	clearInterval(timer); // ends the timer for the previous puzzle
+	$("#timer").html(countDownTime); // sets the timer to say 15 again
+	new RunTimer(function(val) {
+		$("#timer").html(val);
+	});
 }
+
+// creates a timer 'object' that counts down
+// got this code from: https://stackoverflow.com/questions/32141035/countdown-timer-using-moment-js-mmss-format
+function RunTimer(callback, val) {
+    val = countDownTime - 1; // sets the countdown time to say the start time
+    timer = setInterval(function() { 
+        callback(val);
+        if(val-- <= 0) { 
+            clearInterval(timer);
+        } 
+    }, 1000);
+}
+
 
 //rotates the selected shape back to 0 or shows a 'wrong' response
 function clicked(x) {
@@ -73,12 +94,7 @@ function clicked(x) {
 
 // sets the points based on amount of time elapsed
 function timerPoints(){
-	points = 0;
-	if(elapsedTime <= 1500) {
-		points = Math.max(Math.floor((1500 - elapsedTime)/50), 5); 
-	} else {
-		points = 5;
-	}
+	points = Math.max(Math.floor((countDownTime - (elapsedTime / 1000))+1), 1); 
 }
 
 // Puzzle 1
