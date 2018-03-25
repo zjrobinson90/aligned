@@ -1,6 +1,7 @@
 // This is my code to run everything and where I'll put the code for different puzzles
 
-var startButton = "<div class='start'></div>";
+var startButton = "<div class='start'><p>PLAY</p></div>";
+var startText = "<div class='start'></div>";
 var square = "<div onmouseup='clicked(this)' class='square'></div>";
 var triangle = "<div onmouseup='clicked(this)' class='triangle'></div>";
 var totalScore = 0; // sets variable to show the total score of a user (ADD COOKIES TO THIS)
