@@ -30,7 +30,22 @@ body {
     position:fixed;
 	-webkit-overflow-scrolling: touch;
     }
-	
+
+
+/* style for start button triangle */
+.start {	
+	width: 0; 
+	height: 0; 
+	border-top: 15vw solid transparent;
+	border-bottom: 15vw solid transparent;
+	border-left: 20vw solid #404E5C;
+	color: white;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 250%;
+	}
+
+/* style for square div */	
 .square {	
 	background: #404E5C;
 	height: 40vw;
@@ -44,14 +59,13 @@ body {
 	}
 
 .banner {
-	height:40px; 
+	height: 7vh; 
 	width:100%; 
 	background-color: #808D8E;
 	color: white;
-	line-height: 40px; 
+	line-height: 7vh; 
 	text-align: center; 
 	font-family: Arial, Helvetica, sans-serif;
-	margin-bottom: 10px;
 }
 
 .timer {
@@ -61,11 +75,11 @@ body {
 	color: white;
 	right: 0; 
 	top: 0;
-	line-height: 40px;
-	height: 40px;
+	line-height: 7vh;
 	margin-right: 15px;
 }
-	
+
+/* flexbox parent */
 #parent{
 	display: -webkit-box;
 	display: -moz-box;
@@ -73,11 +87,12 @@ body {
 	display: -webkit-flex;
 	display: flex; 
 	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
 	flex-direction: row;
 	margin: 0;
 	padding: 0;
-	height: 100vh;
+	height: 95vh;
 	}
 </style>
 </head>

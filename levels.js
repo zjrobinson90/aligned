@@ -1,5 +1,6 @@
 // This is my code to run everything and where I'll put the code for different puzzles
 
+var startButton = "<div onmouseup='clicked(this)' class='start'></div>";
 var square = "<div onmouseup='clicked(this)' class='square'></div>";
 var triangle = "<div onmouseup='clicked(this)' class='triangle'></div>";
 var totalScore = 0; // sets variable to show the total score of a user (ADD COOKIES TO THIS)
@@ -19,7 +20,8 @@ function vibrate() {
 
 // make full screen by clicking the DIV "banner"
 function fullScreen() {
-	$('#banner').click(function(){screenfull.toggle()});
+	$('#banner').click(function(){screenfull.toggle(); startScreen()});
+	$('.start').click(function(){screenfull.toggle(); clearPuzzle()});
 }
 
 // starts everything
@@ -34,7 +36,7 @@ function setupGame(){
 	// keeps the screen in portrait mode on phones and catches the error thrown when on desktop (NOT WORKING)
 	screen.orientation.lock('portrait').catch(function() {// do nothing
 	});
-	clearPuzzle(); // clears the parent div of anything in it and runs the first puzzle
+	startScreen(); // clears the parent div of anything in it and runs the first puzzle
 }
 
 // clears the puzzle and starts the next one (NEED NEW PUZZLES HERE)
@@ -78,23 +80,36 @@ function clicked(x) {
         'transform': 'rotate(' + degZero + 'deg)',
 		'transform': 'rotate(' + degZero + 'deg)',
 		});
-		$(x).css('background-color', '#57A773');
+		$(x).css('background-color', '#57A773'); // sets the color of the div to green for correct
 		totalScore = totalScore + points; // adds 'points' to the total score
 		$(x).html( "<p class='animated fadeOutUp';>" + points + "</p>");
 		// runs the clear puzzle function, starting the next puzzle
 		setTimeout(function(){clearPuzzle();}, 500);
 	} else {
-		$(x).css('background-color', '#EE6352');
+		$(x).css('background-color', '#EE6352'); // sets the color of the div to red for incorrect
 		$(x).toggleClass('animated shake');
 		totalScore = totalScore + pointsDown; // subtracts points to the total score
 		$(x).html( "<p class='animated fadeOutUp';>" + pointsDown + "</p>");
 	}
-	$('#banner').html("Aligned: " + totalScore);
+	$('#banner').html("Aligned: " + totalScore); // updates the score in the banner
 }
 
 // sets the points based on amount of time elapsed
 function timerPoints(){
 	points = Math.max(Math.floor((countDownTime - (elapsedTime / 1000))+1), 1); 
+}
+
+
+// Start Screen
+function startScreen() {
+	$('#parent').empty(); // clears out the screen to make new divs
+	var n = 0;
+	for(i=0; i<1; i++){
+		$(startButton).appendTo('#parent');
+		//gives the shapes an id by calling their class array position
+		$('.start:eq(' + n + ')').attr('id', 'start' + n);
+		n++;
+	}
 }
 
 // Puzzle 1
@@ -108,7 +123,7 @@ function squarePuzzle_1(){
 			//gives the shapes an id by calling their class array position
 			$('.square:eq(' + n + ')').attr('id', 'square' + n);
 			n++;
-		}	
+		}
 	}
 	//randomly rotates one of the shapes
 	var degree = Math.floor(Math.random() * 11) + 1;
