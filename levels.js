@@ -1,6 +1,6 @@
 // This is my code to run everything and where I'll put the code for different puzzles
 
-var startButton = "<div onmouseup='clicked(this)' class='start'></div>";
+var startButton = "<div class='start'></div>";
 var square = "<div onmouseup='clicked(this)' class='square'></div>";
 var triangle = "<div onmouseup='clicked(this)' class='triangle'></div>";
 var totalScore = 0; // sets variable to show the total score of a user (ADD COOKIES TO THIS)
@@ -21,7 +21,6 @@ function vibrate() {
 // make full screen by clicking the DIV "banner"
 function fullScreen() {
 	$('#banner').click(function(){screenfull.toggle(); startScreen()});
-	$('.start').click(function(){screenfull.toggle(); clearPuzzle()});
 }
 
 // starts everything
@@ -36,7 +35,7 @@ function setupGame(){
 	// keeps the screen in portrait mode on phones and catches the error thrown when on desktop (NOT WORKING)
 	screen.orientation.lock('portrait').catch(function() {// do nothing
 	});
-	startScreen(); // clears the parent div of anything in it and runs the first puzzle
+	startScreen(); // creates the start screen with a play button
 }
 
 // clears the puzzle and starts the next one (NEED NEW PUZZLES HERE)
@@ -45,7 +44,7 @@ function clearPuzzle(){
 	squarePuzzle_1();
 	startTime = Date.now(); // sets the start time timer for how long it takes someone to click
 	clearInterval(timer); // ends the timer for the previous puzzle
-	$("#timer").html(countDownTime); // sets the timer to say 15 again
+	$("#timer").html(countDownTime); // sets the timer to say 10 again
 	new RunTimer(function(val) {
 		$("#timer").html(val);
 	});
@@ -102,14 +101,12 @@ function timerPoints(){
 
 // Start Screen
 function startScreen() {
+	clearInterval(timer); // ends the timer for the previous puzzle
+	$("#timer").html(countDownTime); // sets the timer to say 10 again
 	$('#parent').empty(); // clears out the screen to make new divs
 	var n = 0;
-	for(i=0; i<1; i++){
-		$(startButton).appendTo('#parent');
-		//gives the shapes an id by calling their class array position
-		$('.start:eq(' + n + ')').attr('id', 'start' + n);
-		n++;
-	}
+	$(startButton).appendTo('#parent');
+	$('.start').click(function(){screenfull.toggle(); clearPuzzle()}); // sets the 'start' class to be able to toggle full screen and play the puzzle
 }
 
 // Puzzle 1
