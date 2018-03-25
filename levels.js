@@ -20,7 +20,7 @@ function vibrate() {
 
 // make full screen by clicking the DIV "banner"
 function fullScreen() {
-	$('#banner').click(function(){screenfull.toggle(); startScreen()});
+	$('#banner').click(function(){screenfull.exit(); startScreen()});
 }
 
 // starts everything
@@ -106,7 +106,7 @@ function startScreen() {
 	$('#parent').empty(); // clears out the screen to make new divs
 	var n = 0;
 	$(startButton).appendTo('#parent');
-	$('.start').click(function(){screenfull.toggle(); clearPuzzle()}); // sets the 'start' class to be able to toggle full screen and play the puzzle
+	$('.start').click(function(){screenfull.request(); clearPuzzle()}); // sets the 'start' class to be able to toggle full screen and play the puzzle
 }
 
 // Puzzle 1
