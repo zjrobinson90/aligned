@@ -11,6 +11,7 @@ var points; // sets variable to determine how many points are awarded based on t
 var pointsDown = -5; // sets the variable to determine how many points should be lost
 var timer;
 var countDownTime = 10;
+var streakNum = 0;
 
 // sets up function to vibrate phone
 function vibrate() {
@@ -28,7 +29,6 @@ function fullScreen() {
 window.onload = function() {
 	setupGame();
 	fullScreen();
-	$("#timer").html(countDownTime); // sets the timer to the start time
 	console.log("The screen is full screen: " + screenfull.isFullscreen); // checks to see if the screen is full screened (never will be on start) and console logs it
 }
 
@@ -82,7 +82,9 @@ function clicked(x) {
 		});
 		$(x).css('background-color', '#57A773'); // sets the color of the div to green for correct
 		totalScore = totalScore + points; // adds 'points' to the total score
-		$(x).html( "<p class='animated fadeOutUp';>" + points + "</p>");
+		$(x).html( "<p class='animated fadeOutUp';>" + points + "</p>"); // shows the amount of points won
+		streakNum++; // increases the streak number
+		$('#streak').html(streakNum + " streak"); // shows the current streak
 		// runs the clear puzzle function, starting the next puzzle
 		setTimeout(function(){clearPuzzle();}, 500);
 	} else {
@@ -90,6 +92,8 @@ function clicked(x) {
 		$(x).toggleClass('animated shake');
 		totalScore = totalScore + pointsDown; // subtracts points to the total score
 		$(x).html( "<p class='animated fadeOutUp';>" + pointsDown + "</p>");
+		streakNum = 0; // decreases the streak number back to zero
+		$('#streak').html("<p class='animated fadeInUp';>streak broken</p>"); // shows the text "streak broken"
 	}
 	$('#banner').html("Aligned: " + totalScore); // updates the score in the banner
 }
@@ -103,7 +107,9 @@ function timerPoints(){
 // Start Screen
 function startScreen() {
 	clearInterval(timer); // ends the timer for the previous puzzle
-	$("#timer").html(countDownTime); // sets the timer to say 10 again
+	$("#timer").empty(); // sets the timer to blank
+	$("#streak").empty(); // sets the streak to blank
+	streakNum = 0; // decreases the streak number back to zero
 	$('#parent').empty(); // clears out the screen to make new divs
 	var n = 0;
 	$(startButton).appendTo('#parent');
