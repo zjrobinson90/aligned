@@ -34,28 +34,41 @@ body {
 
 /* style for start button triangle */
 .start {
-	width: 0; 
-	height: 0; 
-	border-top: 15vw solid transparent;
-	border-bottom: 15vw solid transparent;
-	border-left: 25vw solid #404E5C;
+	width: 40vw; 
+	height: 40vw;
+	background: #404E5C;
+	-webkit-clip-path: polygon(0 0, 0% 100%, 100% 50%);
+	clip-path: polygon(0 0, 0% 100%, 100% 50%);
 	color: white;
-	}
-.start p {
-	text-align: center;
-	left: -22vw;
-	top: -8vw;
-	position: relative;
+	padding: 2vw;
+	text-align: left;
+	line-height: 20vw;
+	font-size: 10vw;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 5vw;
-}
+	}
 
-/* style for square div */	
+/* style for square div */
 .square {	
 	background: #404E5C;
 	height: 40vw;
 	width: 40vw;
 	margin: 2vw;
+	transform: rotate(0deg);
+	color: white;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12vw;
+	}
+
+/* style for triangle div  // instructions for triangle: https://tutorialzine.com/2017/03/css-triangles-without-hacks & http://bennettfeely.com/clippy/ */
+.triangle {
+	width: 40vw; 
+	height: 40vw;
+	background: #404E5C;
+	/* The points are: centered top, left bottom, right bottom */
+	-webkit-clip-path: polygon(50% 0, 0 100%, 100% 100%);
+	clip-path: polygon(50% 0, 0 100%, 100% 100%);
+	margin: 3vw;
 	transform: rotate(0deg);
 	color: white;
 	text-align: center;

@@ -3,8 +3,8 @@
 var titleText = "<p class='title'>Aligned</p>";
 var startButton = "<div class='start animated pulse'><p>PLAY</p></div>";
 //var startText = "<div class='start'></div>";
-var square = "<div onmouseup='clicked(this)' class='square'></div>";
-var triangle = "<div onmouseup='clicked(this)' class='triangle'></div>";
+var squareShape = "<div onmouseup='clicked(this)' class='square'></div>";
+var triangleShape = "<div onmouseup='clicked(this)' class='triangle'></div>";
 var totalScore = 0; // sets variable to show the total score of a user (ADD COOKIES TO THIS)
 var startTime; // sets variable to check the start time of the puzzle
 var elapsedTime; // sets variable to check how much time elapses between the start of the puzzle and the first click
@@ -14,6 +14,9 @@ var timer; // variable to hold the timer object
 var countDownTime = 10; // time for the count down timer
 var streakNum = 0; // variable to start the streak number
 var streakBroken = "<p class='animated tada';>streak broken</p>"; // text for streak broken
+var diffTop = 11;
+var diffBottom = 1;
+var puzzlesArray = [];
 
 // sets up function to vibrate phone
 function vibrate() {
@@ -44,7 +47,9 @@ function setupGame(){
 // clears the puzzle and starts the next one (NEED NEW PUZZLES HERE)
 function clearPuzzle(){
 	$('#parent').empty();
-	squarePuzzle_1();
+	puzzlesArray = [squarePuzzle_1, trianglePuzzle_1]; // sets an array of all the puzzles
+	var r = Math.floor(Math.random() * puzzlesArray.length); // randomly picks one of the puzzles from the array of puzzles
+	puzzlesArray[r]('a string'); // sets the text for the puzzle function to make it activate
 	startTime = Date.now(); // sets the start time timer for how long it takes someone to click
 	clearInterval(timer); // ends the timer for the previous puzzle
 	$("#timer").html(countDownTime); // sets the timer to say 10 again
@@ -113,8 +118,8 @@ function startScreen() {
 	$("#timer").empty(); // sets the timer to blank
 	$("#streak").empty(); // sets the streak to blank
 	streakNum = 0; // decreases the streak number back to zero
-	$('#parent').empty(); // clears out the screen to make new divs
-	var n = 0;
+	$('#parent').empty(); // clears out the screen to make new divs	
+	$('#banner').html(totalScore + "<br><span class='points'>points</span>"); // updates the score in the banner
 	$(titleText).appendTo('#parent');
 	$(startButton).appendTo('#parent');
 	$('.start').click(function(){screenfull.request(); clearPuzzle()}); // sets the 'start' class to be able to toggle full screen and play the puzzle
@@ -127,14 +132,22 @@ function squarePuzzle_1(){
 	var n = 0;
 	for(i=0; i<3; i++){
 		for (j=0; j<2; j++){
-			$(square).appendTo('#parent');
+			$(squareShape).appendTo('#parent');
 			//gives the shapes an id by calling their class array position
 			$('.square:eq(' + n + ')').attr('id', 'square' + n);
 			n++;
 		}
 	}
 	//randomly rotates one of the shapes
-	var degree = Math.floor(Math.random() * 11) + 1;
+	var degreePos = Math.floor(Math.random() * diffTop) + diffBottom; // rotating right
+	var degreeNeg = Math.floor(Math.random() * (diffTop * (-1))) - (diffBottom - 1); // rotating left
+	var degree;
+	// randomly sets the direction of the rotation to left or right
+	if((Math.floor(Math.random() * 2) + 1) == 1) {
+		degree = degreePos;
+	} else {
+		degree = degreeNeg;
+	}
 	var rando = Math.floor(Math.random() * $('.square').length);
 	console.log("Number of boxes: " + $('.square').length);
 	$('#square' + rando).css({
@@ -145,6 +158,40 @@ function squarePuzzle_1(){
         'transform': 'rotate(' + degree + 'deg)',
 		});
 		$('#square' + rando).attr('name', 'answer');
+}
+
+function trianglePuzzle_1(){
+	//makes first triangle puzzle
+	//creates the shapes and gives them an id
+	var n = 0;
+	for(i=0; i<3; i++){
+		for (j=0; j<2; j++){
+			$(triangleShape).appendTo('#parent');
+			//gives the shapes an id by calling their class array position
+			$('.triangle:eq(' + n + ')').attr('id', 'triangle' + n);
+			n++;
+		}
+	}
+	//randomly rotates one of the shapes
+	var degreePos = Math.floor(Math.random() * diffTop) + diffBottom; // rotating right
+	var degreeNeg = Math.floor(Math.random() * (diffTop * (-1))) - (diffBottom - 1); // rotating left
+	var degree;
+	// randomly sets the direction of the rotation to left or right
+	if((Math.floor(Math.random() * 2) + 1) == 1) {
+		degree = degreePos;
+	} else {
+		degree = degreeNeg;
+	}
+	var rando = Math.floor(Math.random() * $('.triangle').length);
+	console.log("Number of triangles: " + $('.triangle').length);
+	$('#triangle' + rando).css({
+		'-webkit-transform': 'rotate(' + degree + 'deg)',
+		'-moz-transform': 'rotate(' + degree + 'deg)',
+        '-ms-transform': 'rotate(' + degree + 'deg)',
+        '-o-transform': 'rotate(' + degree + 'deg)',
+        'transform': 'rotate(' + degree + 'deg)',
+		});
+		$('#triangle' + rando).attr('name', 'answer');
 }
 
 
