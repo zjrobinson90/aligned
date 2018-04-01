@@ -1,7 +1,8 @@
 // This is my code to run everything and where I'll put the code for different puzzles
 
-var startButton = "<div class='start'><p>PLAY</p></div>";
-var startText = "<div class='start'></div>";
+var titleText = "<p class='title'>Aligned</p>";
+var startButton = "<div class='start animated pulse'><p>PLAY</p></div>";
+//var startText = "<div class='start'></div>";
 var square = "<div onmouseup='clicked(this)' class='square'></div>";
 var triangle = "<div onmouseup='clicked(this)' class='triangle'></div>";
 var totalScore = 0; // sets variable to show the total score of a user (ADD COOKIES TO THIS)
@@ -9,9 +10,10 @@ var startTime; // sets variable to check the start time of the puzzle
 var elapsedTime; // sets variable to check how much time elapses between the start of the puzzle and the first click
 var points; // sets variable to determine how many points are awarded based on time
 var pointsDown = -5; // sets the variable to determine how many points should be lost
-var timer;
-var countDownTime = 10;
-var streakNum = 0;
+var timer; // variable to hold the timer object
+var countDownTime = 10; // time for the count down timer
+var streakNum = 0; // variable to start the streak number
+var streakBroken = "<p class='animated tada';>streak broken</p>"; // text for streak broken
 
 // sets up function to vibrate phone
 function vibrate() {
@@ -93,9 +95,10 @@ function clicked(x) {
 		totalScore = totalScore + pointsDown; // subtracts points to the total score
 		$(x).html( "<p class='animated fadeOutUp';>" + pointsDown + "</p>");
 		streakNum = 0; // decreases the streak number back to zero
-		$('#streak').html("<p class='animated fadeInUp';>streak broken</p>"); // shows the text "streak broken"
+		$('#streak').html(streakBroken); // shows the text "streak broken"
 	}
-	$('#banner').html("Aligned: " + totalScore); // updates the score in the banner
+	$('#banner').html(totalScore + "<br><span class='points'>points</span>"); // updates the score in the banner
+	// WORK WITH THIS ZACK - fix the points words
 }
 
 // sets the points based on amount of time elapsed
@@ -112,6 +115,7 @@ function startScreen() {
 	streakNum = 0; // decreases the streak number back to zero
 	$('#parent').empty(); // clears out the screen to make new divs
 	var n = 0;
+	$(titleText).appendTo('#parent');
 	$(startButton).appendTo('#parent');
 	$('.start').click(function(){screenfull.request(); clearPuzzle()}); // sets the 'start' class to be able to toggle full screen and play the puzzle
 }

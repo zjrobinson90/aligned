@@ -38,12 +38,12 @@ body {
 	height: 0; 
 	border-top: 15vw solid transparent;
 	border-bottom: 15vw solid transparent;
-	border-left: 23vw solid #404E5C;
+	border-left: 25vw solid #404E5C;
 	color: white;
 	}
 .start p {
 	text-align: center;
-	left: -20vw;
+	left: -22vw;
 	top: -8vw;
 	position: relative;
 	font-family: Arial, Helvetica, sans-serif;
@@ -64,18 +64,35 @@ body {
 	}
 
 .banner {
-	height: 7vh; 
-	width:100%; 
+	font-size: 3vh;
+	height: 7vh;
+	width:100%;
 	background-color: #808D8E;
 	color: white;
 	line-height: 7vh;
-	text-align: center; 
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* WORK WITH THIS ZACK*/
+.points {
+	font-size: 2vh;
+	color: white;
+	line-height: 0;
+	position: relative;
+	top: -10vw;
+}
+
+.title {
+	width: 100%;
+	font-size: 7vh;
+	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
 .timer {
 	position: absolute;
-	text-align: left;
+	text-align: right;
 	font-family: Arial, Helvetica, sans-serif;
 	color: white;
 	right: 0; 
@@ -93,6 +110,9 @@ body {
 	top: 0;
 	line-height: 7vh;
 	margin-left: 5vw;
+}
+.streak p {
+	margin: 0;
 }
 
 /* flexbox parent */
@@ -115,7 +135,7 @@ body {
 
 <body>
 <!--<canvas id="canvas"></canvas>-->
-<div id='banner' class='banner'>Aligned: </div>
+<div id='banner' class='banner'></div>
 <div id='timer' class='timer'></div>
 <div id='streak' class='streak'></div>
 <div id='parent'></div>
