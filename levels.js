@@ -65,11 +65,16 @@ function clearPuzzle(){
 // got this code from: https://stackoverflow.com/questions/32141035/countdown-timer-using-moment-js-mmss-format
 function RunTimer(callback, val) {
     val = countDownTime - 1; // sets the countdown time to say the start time
+	$("#timer").css({'background-color':'#57A773', 'borderColor':'#FFFFFF'}); // sets the background color and border color
     timer = setInterval(function() { 
         callback(val);
         if(val-- <= 0) { 
             clearInterval(timer);
-        } 
+        } else if(val <= 6 && val >=4) {
+			$("#timer").css("background-color", "#EE8434");
+		} else if(val <=3){
+			$("#timer").css("background-color", "#EE6352");
+		}
     }, 1000);
 }
 
@@ -119,6 +124,7 @@ function timerPoints(){
 function startScreen() {
 	clearInterval(timer); // ends the timer for the previous puzzle
 	$("#timer").empty(); // sets the timer to blank
+		$("#timer").css({'background-color':'transparent', 'borderColor':'transparent'}); // sets the background color and border color
 	$("#streak").empty(); // sets the streak to blank
 	streakNum = 0; // decreases the streak number back to zero
 	$('#parent').empty(); // clears out the screen to make new divs	
@@ -128,7 +134,7 @@ function startScreen() {
 	$('.start').click(function(){screenfull.request(); clearPuzzle()}); // sets the 'start' class to be able to toggle full screen and play the puzzle
 }
 
-// Puzzle 1
+// ----------------------------------------------------------------------------------------------------- Puzzles -----------------------------------------------------------------------------------------------------
 function squarePuzzle_1(){
 	//makes first square puzzle
 	//creates the shapes and gives them an id
