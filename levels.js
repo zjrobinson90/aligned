@@ -4,7 +4,7 @@ var titleText = "<p class='title'>Aligned</p>";
 var startButton = "<div class='start animated pulse'><p>PLAY</p></div>";
 //var startText = "<div class='start'></div>";
 var squareShape = "<div onmouseup='clicked(this)' class='square'></div>";
-var triangleShape = "<div onmouseup='clicked(this)' class='triangle'></div>";
+var triangleShape = "<div onmouseup='clicked(this)' class='triangleUp'></div>";
 var totalScore = 0; // sets variable to show the total score of a user (ADD COOKIES TO THIS)
 var startTime; // sets variable to check the start time of the puzzle
 var elapsedTime; // sets variable to check how much time elapses between the start of the puzzle and the first click
@@ -15,7 +15,7 @@ var countDownTime = 10; // time for the count down timer
 var streakNum = 0; // variable to start the streak number
 var streakBroken = "<p class='animated tada';>streak broken</p>"; // text for streak broken
 var diffTop = 11;
-var diffBottom = 1;
+var diffBottom = 2;
 var puzzlesArray = [];
 
 // sets up function to vibrate phone
@@ -164,11 +164,11 @@ function trianglePuzzle_1(){
 	//makes first triangle puzzle
 	//creates the shapes and gives them an id
 	var n = 0;
-	for(i=0; i<3; i++){
-		for (j=0; j<2; j++){
+	for(i=0; i<4; i++){
+		for (j=0; j<3; j++){
 			$(triangleShape).appendTo('#parent');
 			//gives the shapes an id by calling their class array position
-			$('.triangle:eq(' + n + ')').attr('id', 'triangle' + n);
+			$('.triangleUp:eq(' + n + ')').attr('id', 'triangleUp' + n);
 			n++;
 		}
 	}
@@ -182,16 +182,16 @@ function trianglePuzzle_1(){
 	} else {
 		degree = degreeNeg;
 	}
-	var rando = Math.floor(Math.random() * $('.triangle').length);
-	console.log("Number of triangles: " + $('.triangle').length);
-	$('#triangle' + rando).css({
+	var rando = Math.floor(Math.random() * $('.triangleUp').length);
+	console.log("Number of triangles: " + $('.triangleUp').length);
+	$('#triangleUp' + rando).css({
 		'-webkit-transform': 'rotate(' + degree + 'deg)',
 		'-moz-transform': 'rotate(' + degree + 'deg)',
         '-ms-transform': 'rotate(' + degree + 'deg)',
         '-o-transform': 'rotate(' + degree + 'deg)',
         'transform': 'rotate(' + degree + 'deg)',
 		});
-		$('#triangle' + rando).attr('name', 'answer');
+		$('#triangleUp' + rando).attr('name', 'answer');
 }
 
 
