@@ -50,8 +50,8 @@ function setupGame(){
 function clearPuzzle(){
 	$('#parent').empty();
 	puzzlesArray = [squarePuzzle_1, trianglePuzzle_1, trianglePuzzle_2]; // sets an array of all the puzzles
-	//var r = Math.floor(Math.random() * puzzlesArray.length); // randomly picks one of the puzzles from the array of puzzles
-	var r = 2; // testing method to build the puzzle I want
+	var r = Math.floor(Math.random() * puzzlesArray.length); // randomly picks one of the puzzles from the array of puzzles
+	//var r = 2; // testing method to build the puzzle I want
 	puzzlesArray[r]('a string'); // sets the text for the puzzle function to make it activate
 	startTime = Date.now(); // sets the start time timer for how long it takes someone to click
 	clearInterval(timer); // ends the timer for the previous puzzle
