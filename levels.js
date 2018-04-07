@@ -248,22 +248,3 @@ function trianglePuzzle_2(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
