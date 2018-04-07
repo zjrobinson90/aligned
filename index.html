@@ -65,7 +65,6 @@ body {
 	width: 25vw; 
 	height: 25vw;
 	background: #404E5C;
-	/* The points are: centered top, left bottom, right bottom */
 	-webkit-clip-path: polygon(50% 0, 0 100%, 100% 100%);
 	clip-path: polygon(50% 0, 0 100%, 100% 100%);
 	margin: 3vw;
@@ -74,7 +73,51 @@ body {
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12vw;
-	}
+}
+
+.triangleDown {
+	width: 25vw; 
+	height: 25vw;
+	background: #404E5C;
+	-webkit-clip-path: polygon(0 0, 50% 100%, 100% 0);
+	clip-path: polygon(0 0, 50% 100%, 100% 0);
+	margin: 2vw;
+	transform: rotate(0deg);
+	color: white;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12vw;
+}
+
+.triangleLeft {
+	width: 20vw; 
+	height: 20vw;
+	background: #404E5C;
+	-webkit-clip-path: polygon(100% 0, 0 50%, 100% 100%);
+	clip-path: polygon(100% 0, 0 50%, 100% 100%);
+	margin: 2vw;
+	transform: rotate(0deg);
+	color: white;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12vw;
+}
+
+.triangleRight {
+	width: 20vw; 
+	height: 20vw;
+	background: #404E5C;
+	-webkit-clip-path: polygon(0 0, 0% 100%, 100% 50%);
+	clip-path: polygon(0 0, 0% 100%, 100% 50%);
+	margin: 3vw;
+	transform: rotate(0deg);
+	color: white;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12vw;
+}
+/* End triangle CSS */
+
 
 .banner {
 	height: 7vh;

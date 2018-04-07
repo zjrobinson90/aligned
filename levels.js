@@ -4,7 +4,9 @@ var titleText = "<p class='title'>Aligned</p>";
 var startButton = "<div class='start animated pulse'><p>PLAY</p></div>";
 //var startText = "<div class='start'></div>";
 var squareShape = "<div onmouseup='clicked(this)' class='square'></div>";
-var triangleShape = "<div onmouseup='clicked(this)' class='triangleUp'></div>";
+var triangleShapeUp = "<div onmouseup='clicked(this)' class='triangleUp'></div>";
+var triangleShapeLeft = "<div onmouseup='clicked(this)' class='triangleLeft'></div>";
+var triangleShapeRight = "<div onmouseup='clicked(this)' class='triangleRight'></div>";
 var totalScore = 0; // sets variable to show the total score of a user (ADD COOKIES TO THIS)
 var startTime; // sets variable to check the start time of the puzzle
 var elapsedTime; // sets variable to check how much time elapses between the start of the puzzle and the first click
@@ -14,7 +16,7 @@ var timer; // variable to hold the timer object
 var countDownTime = 10; // time for the count down timer
 var streakNum = 0; // variable to start the streak number
 var streakBroken = "<p class='animated tada';>streak broken</p>"; // text for streak broken
-var diffTop = 11;
+var diffTop = 10;
 var diffBottom = 2;
 var puzzlesArray = [];
 
@@ -47,8 +49,9 @@ function setupGame(){
 // clears the puzzle and starts the next one (NEED NEW PUZZLES HERE)
 function clearPuzzle(){
 	$('#parent').empty();
-	puzzlesArray = [squarePuzzle_1, trianglePuzzle_1]; // sets an array of all the puzzles
-	var r = Math.floor(Math.random() * puzzlesArray.length); // randomly picks one of the puzzles from the array of puzzles
+	puzzlesArray = [squarePuzzle_1, trianglePuzzle_1, trianglePuzzle_2]; // sets an array of all the puzzles
+	//var r = Math.floor(Math.random() * puzzlesArray.length); // randomly picks one of the puzzles from the array of puzzles
+	var r = 2; // testing method to build the puzzle I want
 	puzzlesArray[r]('a string'); // sets the text for the puzzle function to make it activate
 	startTime = Date.now(); // sets the start time timer for how long it takes someone to click
 	clearInterval(timer); // ends the timer for the previous puzzle
@@ -134,7 +137,7 @@ function squarePuzzle_1(){
 		for (j=0; j<2; j++){
 			$(squareShape).appendTo('#parent');
 			//gives the shapes an id by calling their class array position
-			$('.square:eq(' + n + ')').attr('id', 'square' + n);
+			$('.square:eq(' + n + ')').attr('id', 'squarePuzzle_1' + n); // assigns an ID to the shape using the same name as the puzzle
 			n++;
 		}
 	}
@@ -148,16 +151,16 @@ function squarePuzzle_1(){
 	} else {
 		degree = degreeNeg;
 	}
-	var rando = Math.floor(Math.random() * $('.square').length);
-	console.log("Number of boxes: " + $('.square').length);
-	$('#square' + rando).css({
+	var rando = Math.floor(Math.random() * n);
+	console.log("Number of boxes: " + n);
+	$('#squarePuzzle_1' + rando).css({
 		'-webkit-transform': 'rotate(' + degree + 'deg)',
 		'-moz-transform': 'rotate(' + degree + 'deg)',
         '-ms-transform': 'rotate(' + degree + 'deg)',
         '-o-transform': 'rotate(' + degree + 'deg)',
         'transform': 'rotate(' + degree + 'deg)',
 		});
-		$('#square' + rando).attr('name', 'answer');
+		$('#squarePuzzle_1' + rando).attr('name', 'answer');
 }
 
 function trianglePuzzle_1(){
@@ -166,9 +169,9 @@ function trianglePuzzle_1(){
 	var n = 0;
 	for(i=0; i<4; i++){
 		for (j=0; j<3; j++){
-			$(triangleShape).appendTo('#parent');
+			$(triangleShapeUp).appendTo('#parent');
 			//gives the shapes an id by calling their class array position
-			$('.triangleUp:eq(' + n + ')').attr('id', 'triangleUp' + n);
+			$('.triangleUp:eq(' + n + ')').attr('id', 'trianglePuzzle_1' + n); // assigns an ID to the shape using the same name as the puzzle
 			n++;
 		}
 	}
@@ -182,17 +185,84 @@ function trianglePuzzle_1(){
 	} else {
 		degree = degreeNeg;
 	}
-	var rando = Math.floor(Math.random() * $('.triangleUp').length);
-	console.log("Number of triangles: " + $('.triangleUp').length);
-	$('#triangleUp' + rando).css({
+	var rando = Math.floor(Math.random() * n);
+	console.log("Number of triangles: " + n);
+	$('#trianglePuzzle_1' + rando).css({
 		'-webkit-transform': 'rotate(' + degree + 'deg)',
 		'-moz-transform': 'rotate(' + degree + 'deg)',
         '-ms-transform': 'rotate(' + degree + 'deg)',
         '-o-transform': 'rotate(' + degree + 'deg)',
         'transform': 'rotate(' + degree + 'deg)',
 		});
-		$('#triangleUp' + rando).attr('name', 'answer');
+		$('#trianglePuzzle_1' + rando).attr('name', 'answer');
 }
+
+function trianglePuzzle_2(){
+	//makes first triangle puzzle
+	//creates the shapes and gives them an id
+	var n = 0; // used to number the shape IDs
+	var m = 0; // used to determine the item in the array of one class
+	var p = 0; // used to determine the item in the array of another class
+	for(i=0; i<4; i++){
+		for (j=0; j<2; j++){
+			$(triangleShapeLeft).appendTo('#parent');
+			//gives the shapes an id by calling their class array position
+			$('.triangleLeft:eq(' + m + ')').attr('id', 'trianglePuzzle_2' + n); // assigns an ID to the shape using the same name as the puzzle
+			n++;
+			$(triangleShapeRight).appendTo('#parent');
+			//gives the shapes an id by calling their class array position
+			$('.triangleRight:eq(' + p + ')').attr('id', 'trianglePuzzle_2' + n); // assigns an ID to the shape using the same name as the puzzle
+			n++;
+			m++;
+			p++;
+		}
+	}
+	//randomly rotates one of the shapes
+	var degreePos = Math.floor(Math.random() * diffTop) + diffBottom; // rotating right
+	var degreeNeg = Math.floor(Math.random() * (diffTop * (-1))) - (diffBottom - 1); // rotating left
+	var degree;
+	// randomly sets the direction of the rotation to left or right
+	if((Math.floor(Math.random() * 2) + 1) == 1) {
+		degree = degreePos;
+	} else {
+		degree = degreeNeg;
+	}
+	var rando = Math.floor(Math.random() * n); // picks a random number within the range of all the shapes built (by using 'n' which is how we named the shapes
+	console.log("Number of triangles: " + n);
+	$('#trianglePuzzle_2' + rando).css({
+		'-webkit-transform': 'rotate(' + degree + 'deg)',
+		'-moz-transform': 'rotate(' + degree + 'deg)',
+        '-ms-transform': 'rotate(' + degree + 'deg)',
+        '-o-transform': 'rotate(' + degree + 'deg)',
+        'transform': 'rotate(' + degree + 'deg)',
+		});
+		$('#trianglePuzzle_2' + rando).attr('name', 'answer');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
