@@ -102,7 +102,7 @@ function clicked(x) {
 		streakNum = 0; // decreases the streak number back to zero
 		$('#streak').html(streakBroken); // shows the text "streak broken"
 	}
-	$('#banner').html(totalScore + "<br><span class='points'>points</span>"); // updates the score in the banner
+	$('#banner').html("<div class='pointCenter'>" + totalScore + "</div><div class='pointCenter2'>points</div>"); // updates the score in the banner
 	// WORK WITH THIS ZACK - fix the points words
 }
 
@@ -119,7 +119,7 @@ function startScreen() {
 	$("#streak").empty(); // sets the streak to blank
 	streakNum = 0; // decreases the streak number back to zero
 	$('#parent').empty(); // clears out the screen to make new divs	
-	$('#banner').html(totalScore + "<br><span class='points'>points</span>"); // updates the score in the banner
+	$('#banner').html("<div class='pointCenter'>" + totalScore + "</div><div class='pointCenter2'>points</div>"); // updates the score in the banner
 	$(titleText).appendTo('#parent');
 	$(startButton).appendTo('#parent');
 	$('.start').click(function(){screenfull.request(); clearPuzzle()}); // sets the 'start' class to be able to toggle full screen and play the puzzle
