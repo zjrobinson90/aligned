@@ -8,6 +8,7 @@
   <meta name="mobile-web-app-capable" content="yes"> <!-- Makes it full screen when saved to home on Chrome-->
   <meta name="apple-mobile-web-app-capable" content="yes"> <!-- Makes it full screen when saved to home on Apple-->
   <script type="text/javascript" src="levels.js"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
   <script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
@@ -15,7 +16,7 @@
   <script src="fullscreen.js"></script> <!-- https://github.com/sindresorhus/screenfull.js*/ -->
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> <!-- https://github.com/daneden/animate.css -->
-  
+ 
 <style>
 html {
 	overflow: hidden;
@@ -47,8 +48,24 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	}
 
+/* style for spacer div */
+.spacer {
+	background: none;
+	height: 25vw;
+	width: 20vw;
+	margin: 2vw;
+	transform: rotate(0deg);
+	color: white;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12vw;
+	border-style: solid;
+    border-width: 2px;
+	border-color: transparent;
+}
+
 /* style for square div */
-.square {	
+.squareLarge {	
 	background: #404E5C;
 	height: 40vw;
 	width: 40vw;
@@ -58,8 +75,19 @@ body {
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12vw;
-	}
-
+}
+.squareSmall {	
+	background: #404E5C;
+	height: 25vw;
+	width: 30vw;
+	margin: 2vw;
+	transform: rotate(0deg);
+	color: white;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12vw;
+}
+	
 /* style for triangle div  // instructions for triangle: https://tutorialzine.com/2017/03/css-triangles-without-hacks & http://bennettfeely.com/clippy/ */
 .triangleUp {
 	width: 25vw; 
@@ -127,12 +155,13 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-/*DELETE THIS */
+/* style for point text */
 .pointCenter {
     font-size: 3.5vh;
 	margin: auto;
     width: 100%;
 	height: 4vh;
+	padding-top: 1vh;
 }
 
 .pointCenter2 {
@@ -140,7 +169,9 @@ body {
     margin: auto;
     width: 100%;
 	height: 3vh;
+	line-height: 0.2vh;
 }
+/* end style for point text */
 
 .title {
 	width: 100%;
@@ -156,12 +187,12 @@ body {
 	color: white;
 	right: 0; 
 	top: 0;
-	font-size: 4vh;
-	line-height: 6vh;
+	font-size: 3.5vh;
 	margin-right: 5vw;
-	margin-top: 0.5vw;
-	width: 6vh;
-	height: 6vh;
+	margin-top: 1vw;
+	line-height: 5.5vh;
+	width: 5.5vh;
+	height: 5.5vh;
 	background-color: #57A773;
 	border-style: solid;
     border-width: 2px;
@@ -183,7 +214,7 @@ body {
 	margin: 0;
 }
 
-/* flexbox parent */
+/* flexbox parent -- what all the puzzles get put into */
 #parent{
 	display: -webkit-box;
 	display: -moz-box;
